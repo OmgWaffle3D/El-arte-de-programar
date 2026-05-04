@@ -1,0 +1,160 @@
+:root {
+  /* Paleta de Colores */
+  --bg-primary: #0a0a0c;
+  --accent-color: #00f2ff;
+  --accent-glow: rgba(0, 242, 255, 0.5);
+  --ball-color: #ff2d55;
+  --ball-glow: rgba(255, 45, 85, 0.6);
+
+  /* Efectos Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* Tipografía */
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+}
+
+/* Reset y Estilos Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(108, 92, 231, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(0, 242, 255, 0.1) 0%, transparent 40%);
+  color: var(--text-primary);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Contenedor del Juego */
+.game-container {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Encabezado y Puntaje */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #fff, var(--accent-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.score-badge {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  /* Mantiene los números alineados */
+}
+
+.score-badge span {
+  color: var(--accent-color);
+  margin-left: 5px;
+}
+
+/* Lienzo de Juego */
+canvas {
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  cursor: none;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+}
+
+/* Pantallas Superpuestas (Overlays) */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  z-index: 10;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 40px;
+  text-align: center;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.description {
+  color: var(--text-secondary);
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+/* Botones */
+.btn-primary {
+  background: var(--accent-color);
+  color: #000;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 20px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -5px var(--accent-glow);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+}
+
+/* Pantalla Final */
+.game-over-title {
+  color: var(--ball-color);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.final-score {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
