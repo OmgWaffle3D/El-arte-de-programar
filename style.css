@@ -124,10 +124,10 @@ canvas {
   font-size: 0.95rem;
 }
 
-/* Botones */
+I changed the color
 .btn-primary {
   background: var(--accent-color);
-  color: #000;
+  color: "purple";
   border: none;
   padding: 14px 28px;
   border-radius: 12px;
