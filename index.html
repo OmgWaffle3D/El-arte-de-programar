@@ -26,8 +26,8 @@
       <!-- Lienzo del juego -->
       <canvas id="gameCanvas" aria-label="Tablero de juego"></canvas>
 
-      <!-- Pantalla de Inicio -->
-      <section id="startOverlay" class="overlay">
+      <!-- Pantalla de Inicio (oculta, se usa pages/inicio.html) -->
+      <section id="startOverlay" class="overlay hidden" aria-hidden="true">
         <h2>¿Lista para jugar?</h2>
         <p class="description">Atrapa la pelota antes de que caiga</p>
         <button id="startBtn" class="btn-primary" aria-label="Comenzar juego">
@@ -35,7 +35,7 @@
         </button>
       </section>
 
-      <!-- Pantalla de Fin de Juego -->
+      <!-- Pantalla de Fin de Juego (oculta, se usa pages/final.html) -->
       <section id="gameOverOverlay" class="overlay hidden" aria-hidden="true">
         <h2 class="game-over-title">¡GAME OVER!</h2>
         <p class="final-score">Puntuación final: <span id="finalScoreVal">0</span></p>
