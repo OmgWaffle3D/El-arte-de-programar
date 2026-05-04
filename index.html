@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Catch The Ball - Un juego arcade moderno y minimalista" />
+    <title>Catch The Ball | Premium Arcade</title>
+    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Contenedor principal del juego -->
+    <main class="game-container">
+      <header class="header">
+        <h1>Catch the Ball</h1>
+        <div class="score-badge" aria-live="polite">
+          SCORE <span id="scoreVal">0</span>
+        </div>
+      </header>
+
+      <!-- Lienzo del juego -->
+      <canvas id="gameCanvas" aria-label="Tablero de juego"></canvas>
+
+      <!-- Pantalla de Inicio -->
+      <section id="startOverlay" class="overlay">
+        <h2>¿Lista para jugar?</h2>
+        <p class="description">Atrapa la pelota antes de que caiga</p>
+        <button id="startBtn" class="btn-primary" aria-label="Comenzar juego">
+          COMENZAR JUEGO
+        </button>
+      </section>
+
+      <!-- Pantalla de Fin de Juego -->
+      <section id="gameOverOverlay" class="overlay hidden" aria-hidden="true">
+        <h2 class="game-over-title">¡GAME OVER!</h2>
+        <p class="final-score">Puntuación final: <span id="finalScoreVal">0</span></p>
+        <button id="restartBtn" class="btn-primary" aria-label="Jugar de nuevo">
+          INTENTAR DE NUEVO
+        </button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
