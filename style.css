@@ -25,31 +25,142 @@
 
 body {
   background-color: var(--bg-primary);
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(108, 92, 231, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(0, 242, 255, 0.1) 0%, transparent 40%);
   color: var(--text-primary);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 10% 15%, rgba(72, 126, 255, 0.25), transparent 18%),
+              radial-gradient(circle at 80% 20%, rgba(255, 45, 85, 0.18), transparent 18%),
+              radial-gradient(circle at 50% 90%, rgba(0, 242, 255, 0.16), transparent 20%);
+  opacity: 0.9;
+  z-index: -2;
+  animation: driftBackground 30s linear infinite;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+                    radial-gradient(circle, rgba(0, 242, 255, 0.08) 1px, transparent 1px);
+  background-size: 100px 100px;
+  opacity: 0.35;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes driftBackground {
+  from { transform: scale(1) translate(0, 0); }
+  to { transform: scale(1.03) translate(-20px, -20px); }
 }
 
 /* Contenedor del Juego */
 .game-container {
   position: relative;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  padding: 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  background: rgba(4, 9, 24, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 35px 80px -30px rgba(0, 0, 0, 0.75);
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 24px;
+  align-items: start;
+  width: min(930px, calc(100vw - 32px));
+}
+
+.header {
+  grid-column: 1 / -1;
+}
+
+.play-area {
+  position: relative;
+}
+
+.progress-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   gap: 20px;
+  padding: 16px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 360px;
+}
+
+.level-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: 100%;
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(0, 242, 255, 0.08);
+  border: 1px solid rgba(0, 242, 255, 0.15);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.level-card strong {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.progress-bar-outer {
+  width: 100%;
+  height: 260px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  inset: auto 0 0;
+  height: 0%;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0, 242, 255, 0.95), rgba(0, 166, 255, 0.55));
+  box-shadow: inset 0 0 18px rgba(0, 242, 255, 0.3);
+  transition: height 0.3s ease;
+}
+
+.progress-text {
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.progress-text span {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+canvas {
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.35);
+  cursor: none;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  height: auto;
 }
 
 /* Encabezado y Puntaje */

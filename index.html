@@ -23,8 +23,22 @@
         </div>
       </header>
 
-      <!-- Lienzo del juego -->
-      <canvas id="gameCanvas" aria-label="Tablero de juego"></canvas>
+      <div class="play-area">
+        <canvas id="gameCanvas" aria-label="Tablero de juego"></canvas>
+
+        <aside class="progress-panel" aria-label="Panel de progreso de nivel">
+          <div class="level-card">
+            <span>NIVEL</span>
+            <strong id="levelVal">1</strong>
+          </div>
+          <div class="progress-bar-outer" aria-label="Barra de progreso del nivel">
+            <div id="progressFill" class="progress-bar-fill"></div>
+          </div>
+          <p class="progress-text">
+            <span id="progressPercent">0%</span> hasta siguiente nivel
+          </p>
+        </aside>
+      </div>
 
       <!-- Pantalla de Inicio -->
       <section id="startOverlay" class="overlay">

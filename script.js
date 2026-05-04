@@ -2,6 +2,9 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const scoreVal = document.getElementById("scoreVal");
+const levelVal = document.getElementById("levelVal");
+const progressFill = document.getElementById("progressFill");
+const progressPercent = document.getElementById("progressPercent");
 const finalScoreVal = document.getElementById("finalScoreVal");
 const startOverlay = document.getElementById("startOverlay");
 const gameOverOverlay = document.getElementById("gameOverOverlay");
@@ -26,6 +29,8 @@ const CONFIG = {
 let state = {
   active: false,
   score: 0,
+  level: 1,
+  progress: 0,
   mouseX: CONFIG.CANVAS_WIDTH / 2
 };
 
@@ -65,7 +70,12 @@ canvas.addEventListener("mousemove", (e) => {
 //Inicia o reinicia los valores para una nueva partida
 function initGame() {
   state.score = 0;
+  state.level = 1;
+  state.progress = 0;
   scoreVal.textContent = state.score;
+  levelVal.textContent = state.level;
+  progressPercent.textContent = "0%";
+  progressFill.style.height = "0%";
 
   // Posición inicial de la pelota
   ball.speed = CONFIG.INITIAL_SPEED;
@@ -77,6 +87,7 @@ function initGame() {
   ball.dy = ball.speed;
 
   // Posición inicial del catcher
+  catcher.width = 90;
   catcher.x = canvas.width / 2 - catcher.width / 2;
 
   // Manejo de la interfaz
@@ -132,10 +143,29 @@ function update() {
   if (hitCatcher && ball.dy > 0) {
     ball.dy *= -1; // Rebote hacia arriba
     state.score++;
+    state.progress++;
     scoreVal.textContent = state.score;
 
-    // Aumentar dificultad
+    // Llenar la barra de progreso
+    const progressRatio = Math.min(100, state.progress);
+    progressFill.style.height = `${progressRatio}%`;
+    progressPercent.textContent = `${progressRatio}%`;
+
+    if (state.progress >= 100) {
+      state.level++;
+      state.progress = 0;
+      levelVal.textContent = state.level;
+      progressFill.style.height = "0%";
+      progressPercent.textContent = "0%";
+
+      // Incrementar dificultad al subir de nivel
+      ball.speed += CONFIG.SPEED_INCREMENT * 5;
+      catcher.width = Math.max(55, catcher.width - 8);
+    }
+
+    // Aumentar dificultad constante por cada captura
     ball.speed += CONFIG.SPEED_INCREMENT;
+
     // Actualizar magnitud de velocidad manteniendo la dirección
     ball.dx = (ball.dx > 0 ? 1 : -1) * ball.speed;
     ball.dy = (ball.dy > 0 ? 1 : -1) * ball.speed;
