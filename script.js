@@ -88,11 +88,12 @@ function initGame() {
   requestAnimationFrame(gameLoop);
 }
 
-//Detiene el juego y muestra la puntuación final
+//Detiene el juego y redirige a la página final
 function handleGameOver() {
   state.active = false;
-  finalScoreVal.textContent = state.score;
-  gameOverOverlay.classList.remove("hidden");
+  localStorage.setItem('puntosP1', state.score);
+  localStorage.setItem('puntosP2', 0);
+  window.location.href = 'pages/final.html';
 }
 
 // --- 5. EL BUCLE PRINCIPAL ---
@@ -182,6 +183,16 @@ function gameLoop() {
 
 // --- 6. ASIGNACIÓN DE EVENTOS ---
 startBtn.addEventListener("click", initGame);
-restartBtn.addEventListener("click", initGame);
+restartBtn.addEventListener("click", () => {
+  window.location.href = 'pages/inicio.html';
+});
+
+// Detectar si viene de pages/inicio.html y comenzar automáticamente
+const params = new URLSearchParams(window.location.search);
+if (params.get('start') === 'true') {
+  setTimeout(() => {
+    initGame();
+  }, 100);
+}
 
 draw();

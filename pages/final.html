@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over</title>
+</head>
+<body>
+    <h1>Game Over</h1>
+
+    <section>
+        <h2>Resultados Finales</h2>
+        <p>
+            <strong>Jugador 1:</strong> <span id="puntosP1">0</span> puntos
+        </p>
+        <p>
+            <strong>Jugador 2:</strong> <span id="puntosP2">0</span> puntos
+        </p>
+    </section>
+
+    <section>
+        <p id="ganador"></p>
+    </section>
+
+    <button onclick="volverAJugar()">Volver a Jugar</button>
+
+    <script>
+        // Obtener puntos de la URL o localStorage
+        function obtenerPuntos() {
+            const params = new URLSearchParams(window.location.search);
+            const p1 = parseInt(params.get('p1')) || parseInt(localStorage.getItem('puntosP1')) || 0;
+            const p2 = parseInt(params.get('p2')) || parseInt(localStorage.getItem('puntosP2')) || 0;
+            return { p1, p2 };
+        }
+
+        function mostrarResultados() {
+            const puntos = obtenerPuntos();
+            document.getElementById('puntosP1').textContent = puntos.p1;
+            document.getElementById('puntosP2').textContent = puntos.p2;
+
+            const ganadorDiv = document.getElementById('ganador');
+            if (puntos.p1 > puntos.p2) {
+                ganadorDiv.textContent = '¡Jugador 1 gana!';
+            } else if (puntos.p2 > puntos.p1) {
+                ganadorDiv.textContent = '¡Jugador 2 gana!';
+            } else {
+                ganadorDiv.textContent = '¡Empate!';
+            }
+        }
+
+        function volverAJugar() {
+            window.location.href = 'inicio.html';
+        }
+
+        mostrarResultados();
+    </script>
+</body>
+</html>

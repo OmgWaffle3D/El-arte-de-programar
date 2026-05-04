@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Dos Jugadores - Inicio</title>
+</head>
+<body>
+    <h1>Juego de Dos Jugadores</h1>
+
+    <section>
+        <h2>Controles</h2>
+        <p>
+            <strong>Jugador 1 (P1):</strong><br>
+            W - Arriba<br>
+            A - Izquierda<br>
+            S - Abajo<br>
+            D - Derecha
+        </p>
+        <p>
+            <strong>Jugador 2 (P2):</strong><br>
+            ↑ - Arriba<br>
+            ← - Izquierda<br>
+            ↓ - Abajo<br>
+            → - Derecha
+        </p>
+    </section>
+
+    <section>
+        <h2>Objetivo del Juego</h2>
+        <p>
+            Derrota la mayor cantidad de enemigos para acumular puntos.
+            Cada enemigo derrotado suma puntos a tu puntuación.
+            Compite contra tu oponente y trata de obtener la mayor cantidad de puntos posible.
+        </p>
+    </section>
+
+    <button onclick="iniciarJuego()">Start Game</button>
+
+    <script>
+        function iniciarJuego() {
+            window.location.href = '../index.html?start=true';
+        }
+    </script>
+</body>
+</html>
