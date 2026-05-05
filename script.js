@@ -12,7 +12,7 @@ const restartBtn = document.getElementById("restartBtn");
 const CONFIG = {
   CANVAS_WIDTH: 400,
   CANVAS_HEIGHT: 500,
-  INITIAL_SPEED: 2.5,
+  INITIAL_SPEED: 5.5,
   SPEED_INCREMENT: 0.1,
   COLORS: {
     BALL: "#ff2d55",
